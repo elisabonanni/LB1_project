@@ -43,14 +43,16 @@ def get_mcc(cm): #(TP*TN-FP*FN)/sqrt((TP+FP)*(TP+FN)*(TN+FP)*(TN+FN))
     fn = cm[0][1]
     mcc = (tp*tn-fp*fn)/np.sqrt((tp+fp)*(tp+fn)*(tn+fp)*(tn+fn)) #at the denominator all the possible combination between true and false
     return mcc
-
+    
+#F1 Score
 def get_f1(cm):
+    '''Calculate the F1 Score'''
     tp = cm[1][1]
     tn = cm[0][0]
     fp = cm[1][0]
     fn = cm[0][1]
-    prec= (tp/(tp+fp))
-    rec= (tp/(tp+fn))
+    prec= (tp/(tp+fp)) #precision
+    rec= (tp/(tp+fn)) #recall
     f1 = (2*prec*rec)/(prec+rec)
     return f1
 
@@ -59,7 +61,7 @@ if __name__=='__main__':
   th=0.001
   if len(sys.argv)>2:
       th=float(sys.argv[2])
-  preds=get_data(predfile)
+  preds=get_data(predfile) #predictions
   cm=get_cm(preds,th)
   q2=get_accuracy(cm)
   mcc=get_mcc(cm)
