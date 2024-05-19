@@ -22,7 +22,7 @@ if __name__=="__main__":
     if len(sys.argv)>3:
         pos=int(sys.argv[3])-1 #if exists an extra input, it corresponds to the position of the ids
     dseq = get_seqs(fileseq,pos)
-    ids=open(fileids, "r").read().rstrip().split('\n') #we create a list of the identifiers from the file
+    ids=open(fileids, "r").read().rstrip().split('\n') #create a list of the identifiers from the file
     for i in ids:
         if dseq.get(i,0) != 0: #if the id is not present
             print(">"+i+"\n"+dseq[i])
